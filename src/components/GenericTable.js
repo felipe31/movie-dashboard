@@ -59,15 +59,17 @@ export default function GenericTable(props) {
           <TableBody>{tableData}</TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[5, 10, 15, 20, 25]}
-        component="div"
-        count={props.pageData.totalRows}
-        rowsPerPage={props.pageData.pageSize}
-        page={props.pageData.curPage}
-        onPageChange={props.onPageChange}
-        onRowsPerPageChange={props.onRowsPerPageChange}
-      />
+      {props.pageData && (
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
+          component="div"
+          count={props.pageData.totalRows}
+          rowsPerPage={props.pageData.pageSize}
+          page={props.pageData.curPage}
+          onPageChange={props.onPageChange}
+          onRowsPerPageChange={props.onRowsPerPageChange}
+        />
+      )}
     </Paper>
   );
 }
