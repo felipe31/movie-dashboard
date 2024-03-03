@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import Dashboard from "./dashboard";
 import { useState } from "react";
+import "../styles/globals.css";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState(<Dashboard />);
