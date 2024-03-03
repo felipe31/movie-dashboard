@@ -1,4 +1,5 @@
 import GenericTable from "@/components/GenericTable";
+import { fetchJSON } from "@/utils";
 import { useEffect, useState } from "react";
 
 export default function MoviesTable() {
@@ -27,22 +28,17 @@ export default function MoviesTable() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      return fetch(
-        `https://tools.texoit.com/backend-java/api/movies?page=${pageData.curPage}&size=${pageData.pageSize}`,
-      );
-    }
-    fetchData()
-      .then((body) => body.json())
-      .then((result) => {
-        setData(result.content);
-        setPageData({
-          totalRows: result.totalElements,
-          totalPages: result.totalPages,
-          curPage: result.pageable.pageNumber,
-          pageSize: result.size,
-        });
+    fetchJSON(
+      `https://tools.texoit.com/backend-java/api/movies?page=${pageData.curPage}&size=${pageData.pageSize}`,
+    ).then((result) => {
+      setData(result.content);
+      setPageData({
+        totalRows: result.totalElements,
+        totalPages: result.totalPages,
+        curPage: result.pageable.pageNumber,
+        pageSize: result.size,
       });
+    });
   }, [pageData.curPage, pageData.pageSize]);
 
   return (
