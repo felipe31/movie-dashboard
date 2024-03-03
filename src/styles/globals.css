@@ -23,4 +23,5 @@ a {
 
 .MuiTableCell-head {
   font-weight: 600;
+  background-color: rgb(209, 228, 248);
 }

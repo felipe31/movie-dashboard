@@ -11,7 +11,7 @@ export default function MoviesTable() {
   ]);
 
   const [data, setData] = useState([]);
-  const [pageData, setPageData] = useState({ totalRows: 0, totalPages: 0, curPage: 0, pageSize: 15 });
+  const [pageData, setPageData] = useState({ totalRows: 0, totalPages: 0, curPage: 0, pageSize: 10 });
 
   function onPageChange(event, newPage) {
     setPageData((prevPageData) => ({
