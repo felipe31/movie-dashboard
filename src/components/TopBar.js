@@ -11,15 +11,11 @@ export default function TopBar({ onPageChange, currentPath }) {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Frontend Javascript test
           </Typography>
-          <Button
-            onClick={() => onPageChange(<Dashboard />, "/")}
-            color="inherit"
-            variant={currentPath === "/" ? "outlined" : ""}
-          >
+          <Button onClick={() => onPageChange("/")} color="inherit" variant={currentPath === "/" ? "outlined" : ""}>
             Dashboard
           </Button>
           <Button
-            onClick={() => onPageChange(<List />, "/list")}
+            onClick={() => onPageChange("/list")}
             color="inherit"
             variant={currentPath === "/list" ? "outlined" : ""}
           >

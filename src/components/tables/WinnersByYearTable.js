@@ -15,7 +15,11 @@ export default function WinnersByYearTable() {
 
   useEffect(() => {
     fetchJSON(`https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`)
-      .then((result) => setData(result))
+      .then((result) =>
+        setData(result).map((row) => {
+          return { ...row, key: row.id };
+        }),
+      )
       .catch(() => setData([]));
   }, [year]);
 

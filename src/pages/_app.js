@@ -1,19 +1,20 @@
 import Layout from "@/components/Layout";
 import Dashboard from "./dashboard";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "../styles/globals.css";
+import List from "./list";
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(<Dashboard />);
   const [currentPath, setCurrentPath] = useState("/");
 
-  const onPageChange = (page, path) => {
-    setCurrentPage(page);
+  const onPageChange = (path) => {
     setCurrentPath(path);
   };
+
   return (
     <Layout onPageChange={onPageChange} currentPath={currentPath}>
-      {currentPage}
+      {currentPath === "/" && <Dashboard key="d1" />}
+      {currentPath === "/list" && <List key="l1" />}
     </Layout>
   );
 }

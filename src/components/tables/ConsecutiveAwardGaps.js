@@ -17,8 +17,16 @@ export default function ConsecutiveAwardGaps() {
   useEffect(() => {
     fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=max-min-win-interval-for-producers`).then(
       (result) => {
-        setDataMax(result?.max);
-        setDataMin(result?.min);
+        setDataMax(
+          result?.max.map((row) => {
+            return { ...row, key: `${row.producer}_${row.previousWin}` };
+          }),
+        );
+        setDataMin(
+          result?.min.map((row) => {
+            return { ...row, key: `${row.producer}_${row.previousWin}` };
+          }),
+        );
       },
     );
   }, []);

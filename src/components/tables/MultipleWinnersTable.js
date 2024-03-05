@@ -14,7 +14,11 @@ export default function MultipleWinnersTable() {
   useEffect(() => {
     fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=years-with-multiple-winners`).then(
       (result) => {
-        setData(result.years);
+        setData(
+          result.years.map((row) => {
+            return { ...row, key: `${row.year}_${row.winnerCount}` };
+          }),
+        );
       },
     );
   }, []);

@@ -13,7 +13,11 @@ export default function TopStudiosTable() {
 
   useEffect(() => {
     fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=studios-with-win-count`).then((result) => {
-      setData(result.studios.slice(0, 3));
+      setData(
+        result.studios.slice(0, 3).map((row) => {
+          return { ...row, key: `${row.name}_${row.winCount}` };
+        }),
+      );
     });
   }, []);
 

@@ -31,7 +31,11 @@ export default function MoviesTable() {
     fetchJSON(
       `https://tools.texoit.com/backend-java/api/movies?page=${pageData.curPage}&size=${pageData.pageSize}`,
     ).then((result) => {
-      setData(result.content);
+      setData(
+        result.content.map((row) => {
+          return { ...row, key: `${row.title}_${row.year}` };
+        }),
+      );
       setPageData({
         totalRows: result.totalElements,
         totalPages: result.totalPages,
