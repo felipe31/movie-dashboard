@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import Dashboard from "./dashboard";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import "../styles/globals.css";
 import List from "./list";
 

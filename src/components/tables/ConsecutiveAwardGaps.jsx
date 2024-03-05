@@ -2,6 +2,7 @@ import GenericTable from "@/components/GenericTable";
 import { fetchJSON } from "@/utils";
 import { Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import React from "react";
 
 export default function ConsecutiveAwardGaps() {
   const headers = new Map([
