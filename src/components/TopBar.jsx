@@ -11,7 +11,7 @@ import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
  */
 export default function TopBar({ onPageChange, currentPath, menu }) {
   const buttons = [];
-  console.log(menu);
+
   if (menu instanceof Map) {
     for (const [path, label] of menu.entries()) {
       buttons.push(

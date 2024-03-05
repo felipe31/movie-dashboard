@@ -14,7 +14,7 @@ export default function ConsecutiveAwardGaps() {
   const [dataMax, setDataMax] = useState([]);
   const [dataMin, setDataMin] = useState([]);
   const url = process.env.NEXT_PUBLIC_BASE_URL;
-  console.log(url);
+
   useEffect(() => {
     fetchJSON(`${url}?projection=max-min-win-interval-for-producers`).then((result) => {
       setDataMax(

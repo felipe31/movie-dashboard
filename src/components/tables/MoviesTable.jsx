@@ -31,14 +31,14 @@ export default function MoviesTable() {
   useEffect(() => {
     fetchJSON(`${url}?page=${pageData.curPage}&size=${pageData.pageSize}`).then((result) => {
       setData(
-        result.content.map((row) => {
+        result.content?.map((row) => {
           return { ...row, key: `${row.title}_${row.year}` };
         }),
       );
       setPageData({
         totalRows: result.totalElements,
         totalPages: result.totalPages,
-        curPage: result.pageable.pageNumber,
+        curPage: result.pageable?.pageNumber,
         pageSize: result.size,
       });
     });
