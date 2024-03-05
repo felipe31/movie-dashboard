@@ -33,9 +33,7 @@ export default function ConsecutiveAwardGaps() {
 
   return (
     <Paper sx={{ p: 2, m: 2 }}>
-      <Typography sx={{ mt: 2 }} variant="h4">
-        Top 3 studios with winners
-      </Typography>
+      <h2>Producers with longest and shortest interval between wins</h2>
       <Typography sx={{ mt: 2 }} variant="h6">
         Maximum
       </Typography>

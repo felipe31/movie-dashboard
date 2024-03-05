@@ -20,7 +20,6 @@ import {
  * @return {*}
  */
 export default function GenericTable(props) {
-  console.log(props);
   if (!props.headers instanceof Map || !props.headers) {
     return <>No data</>;
   }

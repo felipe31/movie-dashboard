@@ -11,16 +11,16 @@ export default function WinnersByYearTable() {
   ]);
 
   const [data, setData] = useState([]);
-  const [year, setYear] = useState(2018);
+  const [year, setYear] = useState();
 
   useEffect(() => {
-    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`)
-      .then((result) =>
-        setData(result).map((row) => {
+    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`).then((result) =>
+      setData(
+        result.map((row) => {
           return { ...row, key: row.id };
         }),
-      )
-      .catch(() => setData([]));
+      ),
+    );
   }, [year]);
 
   let yearText = year;

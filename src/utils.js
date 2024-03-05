@@ -1,4 +1,8 @@
 export async function fetchJSON(url) {
   const res = await fetch(url);
-  return await res.json();
+  try {
+    return await res.json();
+  } catch (e) {
+    return [];
+  }
 }

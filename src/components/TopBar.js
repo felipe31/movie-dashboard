@@ -1,7 +1,4 @@
-import Dashboard from "@/pages/dashboard";
-import List from "@/pages/list";
-
-const { Box, AppBar, Toolbar, Typography, Button } = require("@mui/material");
+import { Box, AppBar, Toolbar, Typography, Button } from "@mui/material";
 
 export default function TopBar({ onPageChange, currentPath }) {
   return (
