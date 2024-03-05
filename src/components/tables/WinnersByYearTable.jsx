@@ -23,6 +23,12 @@ export default function WinnersByYearTable() {
     );
   }, [year]);
 
+  function keyPress(e) {
+    if (e.keyCode == 13) {
+      setYear(parseInt(yearText, 10));
+    }
+  }
+
   let yearText = year;
   return (
     <Paper sx={{ p: 2, m: 2 }}>
@@ -35,6 +41,7 @@ export default function WinnersByYearTable() {
             label="Search by year"
             variant="outlined"
             onChange={(val) => (yearText = val.target.value)}
+            onKeyDown={keyPress}
           />
         </Grid>
         <Grid item xs={2}>

@@ -11,8 +11,13 @@ export default function Home() {
     setCurrentPath(path);
   };
 
+  const menu = new Map([
+    ["/", "Dashboard"],
+    ["/list", "List"],
+  ]);
+
   return (
-    <Layout onPageChange={onPageChange} currentPath={currentPath}>
+    <Layout menu={menu} onPageChange={onPageChange} currentPath={currentPath}>
       {currentPath === "/" && <Dashboard key="d1" />}
       {currentPath === "/list" && <List key="l1" />}
     </Layout>

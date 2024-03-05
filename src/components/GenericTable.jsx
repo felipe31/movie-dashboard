@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@mui/material";
 
-import React from "react";
 /**
  * Builds a table based on `headers` order and keys.
  * `headers` is a map to define existing keys and table headers text.
