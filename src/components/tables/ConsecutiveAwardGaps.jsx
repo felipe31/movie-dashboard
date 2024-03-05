@@ -13,23 +13,22 @@ export default function ConsecutiveAwardGaps() {
 
   const [dataMax, setDataMax] = useState([]);
   const [dataMin, setDataMin] = useState([]);
-
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
+  console.log(url);
   useEffect(() => {
-    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=max-min-win-interval-for-producers`).then(
-      (result) => {
-        setDataMax(
-          result?.max.map((row) => {
-            return { ...row, key: `${row.producer}_${row.previousWin}` };
-          }),
-        );
-        setDataMin(
-          result?.min.map((row) => {
-            return { ...row, key: `${row.producer}_${row.previousWin}` };
-          }),
-        );
-      },
-    );
-  }, []);
+    fetchJSON(`${url}?projection=max-min-win-interval-for-producers`).then((result) => {
+      setDataMax(
+        result?.max?.map((row) => {
+          return { ...row, key: `${row.producer}_${row.previousWin}` };
+        }),
+      );
+      setDataMin(
+        result?.min?.map((row) => {
+          return { ...row, key: `${row.producer}_${row.previousWin}` };
+        }),
+      );
+    });
+  }, [url]);
 
   return (
     <Paper sx={{ p: 2, m: 2 }}>

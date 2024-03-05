@@ -26,11 +26,10 @@ export default function MoviesTable() {
       curPage: 0,
     }));
   }
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    fetchJSON(
-      `https://tools.texoit.com/backend-java/api/movies?page=${pageData.curPage}&size=${pageData.pageSize}`,
-    ).then((result) => {
+    fetchJSON(`${url}?page=${pageData.curPage}&size=${pageData.pageSize}`).then((result) => {
       setData(
         result.content.map((row) => {
           return { ...row, key: `${row.title}_${row.year}` };
@@ -43,7 +42,7 @@ export default function MoviesTable() {
         pageSize: result.size,
       });
     });
-  }, [pageData.curPage, pageData.pageSize]);
+  }, [pageData.curPage, pageData.pageSize, url]);
 
   return (
     <>

@@ -34,18 +34,20 @@ export default function GenericTable(props) {
       </TableCell>,
     );
   }
-  for (const row of props.data) {
-    const tableRow = [];
-    for (const col of props.headers.keys()) {
-      let value = row[col];
-      if (typeof row[col] === "boolean") {
-        value = row[col] ? "Yes" : "No";
+  if (Array.isArray(props.data)) {
+    for (const row of props.data) {
+      const tableRow = [];
+      for (const col of props.headers.keys()) {
+        let value = row[col];
+        if (typeof row[col] === "boolean") {
+          value = row[col] ? "Yes" : "No";
+        }
+
+        tableRow.push(<TableCell key={`${row.key}_${col}`}>{value}</TableCell>);
       }
 
-      tableRow.push(<TableCell key={`${row.key}_${col}`}>{value}</TableCell>);
+      tableData.push(<TableRow key={row.key}>{tableRow}</TableRow>);
     }
-
-    tableData.push(<TableRow key={row.key}>{tableRow}</TableRow>);
   }
 
   return (

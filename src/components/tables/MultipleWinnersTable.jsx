@@ -10,18 +10,17 @@ export default function MultipleWinnersTable() {
   ]);
 
   const [data, setData] = useState([]);
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=years-with-multiple-winners`).then(
-      (result) => {
-        setData(
-          result.years.map((row) => {
-            return { ...row, key: `${row.year}_${row.winnerCount}` };
-          }),
-        );
-      },
-    );
-  }, []);
+    fetchJSON(`${url}?projection=years-with-multiple-winners`).then((result) => {
+      setData(
+        result.years?.map((row) => {
+          return { ...row, key: `${row.year}_${row.winnerCount}` };
+        }),
+      );
+    });
+  }, [url]);
 
   return (
     <Paper sx={{ p: 2, m: 2 }}>

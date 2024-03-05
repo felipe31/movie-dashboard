@@ -12,16 +12,17 @@ export default function WinnersByYearTable() {
 
   const [data, setData] = useState([]);
   const [year, setYear] = useState();
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?winner=true&year=${year}`).then((result) =>
+    fetchJSON(`${url}?winner=true&year=${year}`).then((result) =>
       setData(
         result.map((row) => {
           return { ...row, key: row.id };
         }),
       ),
     );
-  }, [year]);
+  }, [year, url]);
 
   function keyPress(e) {
     if (e.keyCode == 13) {

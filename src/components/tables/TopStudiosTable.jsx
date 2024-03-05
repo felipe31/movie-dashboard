@@ -10,16 +10,17 @@ export default function TopStudiosTable() {
   ]);
 
   const [data, setData] = useState([]);
+  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    fetchJSON(`https://tools.texoit.com/backend-java/api/movies?projection=studios-with-win-count`).then((result) => {
+    fetchJSON(`${url}?projection=studios-with-win-count`).then((result) => {
       setData(
-        result.studios.slice(0, 3).map((row) => {
+        result.studios?.slice(0, 3).map((row) => {
           return { ...row, key: `${row.name}_${row.winCount}` };
         }),
       );
     });
-  }, []);
+  }, [url]);
 
   return (
     <Paper sx={{ p: 2, m: 2 }}>
