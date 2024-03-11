@@ -13,6 +13,8 @@ export default function MultipleWinnersTable() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
+    if (!url) return;
+
     fetchJSON(`${url}?projection=years-with-multiple-winners`).then((result) => {
       setData(
         result.years?.map((row) => {

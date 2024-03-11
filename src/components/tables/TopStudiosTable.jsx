@@ -13,6 +13,8 @@ export default function TopStudiosTable() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
+    if (!url) return;
+
     fetchJSON(`${url}?projection=studios-with-win-count`).then((result) => {
       setData(
         result.studios?.slice(0, 3).map((row) => {

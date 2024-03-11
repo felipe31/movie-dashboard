@@ -15,6 +15,8 @@ export default function WinnersByYearTable() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
+    if (!year || !url) return;
+
     fetchJSON(`${url}?winner=true&year=${year}`).then((result) =>
       setData(
         result.map((row) => {

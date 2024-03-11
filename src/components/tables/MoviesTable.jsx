@@ -29,6 +29,8 @@ export default function MoviesTable() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
+    if (!url || isNaN(pageData.curPage) || isNaN(pageData.pageSize)) return;
+
     fetchJSON(`${url}?page=${pageData.curPage}&size=${pageData.pageSize}`).then((result) => {
       setData(
         result.content?.map((row) => {
