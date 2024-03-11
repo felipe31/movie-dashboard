@@ -1,5 +1,5 @@
 import GenericTable from "@/components/GenericTable";
-import { fetchJSON } from "@/utils";
+import { getMultipleWinnersList } from "@/services/apiService";
 import { Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -10,19 +10,18 @@ export default function MultipleWinnersTable() {
   ]);
 
   const [data, setData] = useState([]);
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    if (!url) return;
-
-    fetchJSON(`${url}?projection=years-with-multiple-winners`).then((result) => {
-      setData(
-        result.years?.map((row) => {
-          return { ...row, key: `${row.year}_${row.winnerCount}` };
-        }),
-      );
-    });
-  }, [url]);
+    getMultipleWinnersList()
+      .then((result) => {
+        setData(
+          result.years?.map((row) => {
+            return { ...row, key: `${row.year}_${row.winnerCount}` };
+          }),
+        );
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <Paper sx={{ p: 2, m: 2 }}>

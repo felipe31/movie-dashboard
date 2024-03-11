@@ -1,5 +1,5 @@
 import GenericTable from "@/components/GenericTable";
-import { fetchJSON } from "@/utils";
+import { getMoviesList } from "@/services/apiService";
 import { useEffect, useState } from "react";
 
 export default function MoviesTable() {
@@ -26,25 +26,24 @@ export default function MoviesTable() {
       curPage: 0,
     }));
   }
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    if (!url || isNaN(pageData.curPage) || isNaN(pageData.pageSize)) return;
-
-    fetchJSON(`${url}?page=${pageData.curPage}&size=${pageData.pageSize}`).then((result) => {
-      setData(
-        result.content?.map((row) => {
-          return { ...row, key: `${row.title}_${row.year}` };
-        }),
-      );
-      setPageData({
-        totalRows: result.totalElements,
-        totalPages: result.totalPages,
-        curPage: result.pageable?.pageNumber,
-        pageSize: result.size,
-      });
-    });
-  }, [pageData.curPage, pageData.pageSize, url]);
+    getMoviesList(pageData.curPage, pageData.pageSize)
+      .then((result) => {
+        setData(
+          result.content?.map((row) => {
+            return { ...row, key: `${row.title}_${row.year}` };
+          }),
+        );
+        setPageData({
+          totalRows: result.totalElements,
+          totalPages: result.totalPages,
+          curPage: result.pageable?.pageNumber,
+          pageSize: result.size,
+        });
+      })
+      .catch(() => {});
+  }, [pageData.curPage, pageData.pageSize]);
 
   return (
     <>

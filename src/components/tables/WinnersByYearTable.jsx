@@ -1,5 +1,5 @@
 import GenericTable from "@/components/GenericTable";
-import { fetchJSON } from "@/utils";
+import { getWinnerByYearList } from "@/services/apiService";
 import { Button, Grid, Paper, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -15,15 +15,15 @@ export default function WinnersByYearTable() {
   const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
-    if (!year || !url) return;
-
-    fetchJSON(`${url}?winner=true&year=${year}`).then((result) =>
-      setData(
-        result.map((row) => {
-          return { ...row, key: row.id };
-        }),
-      ),
-    );
+    getWinnerByYearList(year)
+      .then((result) =>
+        setData(
+          result.map((row) => {
+            return { ...row, key: row.id };
+          }),
+        ),
+      )
+      .catch(() => {});
   }, [year, url]);
 
   function keyPress(e) {
