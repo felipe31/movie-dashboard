@@ -101,7 +101,6 @@ export default function MoviesTable() {
   }
 
   useEffect(() => {
-    console.log("useeffect");
     getMoviesList(pageData.curPage, pageData.pageSize, { isWinner, year })
       .then((result) => {
         setData(

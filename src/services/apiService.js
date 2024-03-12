@@ -9,7 +9,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
  * @param {number} pageNum
  * @param {number} pageSize
  * @param {{isWinner?: boolean, year?: number}} options
- * @return {{
+ * @return {Promise<{
  *      content: {
  *          id: number,
  *          year: number,
@@ -40,10 +40,11 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
  *      number: number,
  *      numberOfElements: number,
  *      size: number,
- *  }}
+ *  }>}
  */
-export async function getMoviesList(pageNum, pageSize, { isWinner, year }) {
-  if (!!BASE_URL && !isNaN(pageNum) && !isNaN(pageSize)) {
+export async function getMoviesList(pageNum, pageSize, ops) {
+  const { isWinner, year } = ops ?? {};
+  if (!!BASE_URL && !isNaN(pageNum) && !isNaN(pageSize) && pageNum >= 0 && pageSize > 0) {
     let options = "";
     if (isWinner !== undefined) options += `&winner=${isWinner.toString()}`;
     if (year !== undefined && !isNaN(year)) options += `&year=${year}`;
@@ -62,14 +63,14 @@ export async function getMoviesList(pageNum, pageSize, { isWinner, year }) {
  *
  * @export
  * @param {number} year
- * @return {{
+ * @return {Promise<{
  *      id: number,
  *      year: number,
  *      title: string,
  *      studios: string[],
  *      producers: string[],
  *      winner: boolean,
- *  }[]}
+ *  }[]>}
  */
 export async function getWinnerByYearList(year) {
   if (!!BASE_URL && !isNaN(year)) {
@@ -86,19 +87,19 @@ export async function getWinnerByYearList(year) {
  * Retrieves the list of consecurive awards
  *
  * @export
- * @return {{
- *      max: {
+ * @return {Promise<{
+ *      min: {
  *          producer: string,
  *          interval: number,
  *          previousWin: number,
  *          followingWin: number,
  *      }[],
- *           max:{producer: string,
+ *      max:{producer: string,
  *          interval: number,
  *          previousWin: number,
  *          followingWin: number,
  *      }[]
- *  }}
+ *  }>}
  */
 export async function getConsecutiveAwardList() {
   if (!!BASE_URL) {
@@ -115,12 +116,12 @@ export async function getConsecutiveAwardList() {
  *
  *
  * @export
- * @return {{
+ * @return {Promise<{
  *      years: {
  *          year: number,
  *          winnerCount: number,
  *      }[]
- *  }}
+ *  }>}
  */
 export async function getMultipleWinnersList() {
   if (!!BASE_URL) {
@@ -137,12 +138,12 @@ export async function getMultipleWinnersList() {
  *
  *
  * @export
- * @return {{
+ * @return {Promise<{
  *      studios: {
  *          name: string,
  *          winCount: number
  *      }[]
- *  }}
+ *  }>}
  */
 export async function getTopStudiosList() {
   if (!!BASE_URL) {

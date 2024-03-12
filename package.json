@@ -10,13 +10,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "DOTENV_CONFIG_PATH=.env.local jest --setupFiles=dotenv/config",
+    "test:watch": "DOTENV_CONFIG_PATH=.env.local  jest --watch --setupFiles=dotenv/config"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.11",
+    "dotenv": "^16.4.5",
     "next": "14.1.1",
     "react": "^18",
     "react-dom": "^18"
