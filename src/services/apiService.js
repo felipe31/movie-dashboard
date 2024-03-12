@@ -8,6 +8,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
  * @export
  * @param {number} pageNum
  * @param {number} pageSize
+ * @param {{isWinner?: boolean, year?: number}} options
  * @return {{
  *      content: {
  *          id: number,
@@ -41,9 +42,13 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
  *      size: number,
  *  }}
  */
-export async function getMoviesList(pageNum, pageSize) {
+export async function getMoviesList(pageNum, pageSize, { isWinner, year }) {
   if (!!BASE_URL && !isNaN(pageNum) && !isNaN(pageSize)) {
-    const res = await fetchJSON(`${BASE_URL}?page=${pageNum}&size=${pageSize}`);
+    let options = "";
+    if (isWinner !== undefined) options += `&winner=${isWinner.toString()}`;
+    if (year !== undefined && !isNaN(year)) options += `&year=${year}`;
+
+    const res = await fetchJSON(`${BASE_URL}?page=${pageNum}&size=${pageSize}${options}`);
 
     if (!!res) {
       return res;

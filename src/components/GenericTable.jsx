@@ -27,9 +27,9 @@ export default function GenericTable(props) {
   const tableHeaders = [];
   const tableData = [];
 
-  for (const col of props.headers.values()) {
+  for (const [key, col] of props.headers.entries()) {
     tableHeaders.push(
-      <TableCell variant="head" key={col}>
+      <TableCell variant="head" key={key}>
         {col}
       </TableCell>,
     );

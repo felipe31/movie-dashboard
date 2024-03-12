@@ -12,7 +12,6 @@ export default function WinnersByYearTable() {
 
   const [data, setData] = useState([]);
   const [year, setYear] = useState();
-  const url = process.env.NEXT_PUBLIC_BASE_URL;
 
   useEffect(() => {
     getWinnerByYearList(year)
@@ -24,7 +23,7 @@ export default function WinnersByYearTable() {
         ),
       )
       .catch(() => {});
-  }, [year, url]);
+  }, [year]);
 
   function keyPress(e) {
     if (e.keyCode == 13) {
@@ -40,6 +39,7 @@ export default function WinnersByYearTable() {
         <Grid item xs={10}>
           <TextField
             sx={{ width: "100%" }}
+            type="number"
             id="outlined-basic"
             label="Search by year"
             variant="outlined"
