@@ -9,25 +9,25 @@ The `list` shows a table of all movies in the API provided by _TexoIT_.
 1. Install project's dependencies:
 
 ```sh
-yarn install
+npm install
 ```
 
 2. Build the project:
 
 ```sh
-yarn build
+npm build
 ```
 
 3. Start the client:
 
 ```sh
-yarn start
+npm start
 ```
 
 Or, to enable auto restart:
 
 ```sh
-yarn dev
+npm dev
 ```
 
 Once the message ` ✓ Ready in XXXms` shows up, the client is ready to be used.
@@ -41,5 +41,5 @@ The client tests if all required components show up in the rendered output.
 1. Run the tests:
 
 ```sh
-yarn test
+npm test
 ```
